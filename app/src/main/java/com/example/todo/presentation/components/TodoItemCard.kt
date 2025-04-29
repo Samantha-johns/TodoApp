@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.todo.R
+import com.example.todo.data.model.TodoItem
 
 // IN THIS FILE WE WILL DEFINE A TODOITEMCARD COMPOSABLE THAT WILL BE REUSABLE
 // IN DIFFERENT SCREENS
@@ -38,6 +39,8 @@ fun onCompleteChange(){}
 
 @Composable
 fun TodoItemCard(
+    todo: TodoItem,
+    onCompleteChange: (Boolean) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -53,13 +56,13 @@ fun TodoItemCard(
 
             Checkbox(
                 modifier = Modifier.padding(end = 16.dp),
-                checked = false,
-                onCheckedChange = {  }
+                checked = todo.isCompleted,
+                onCheckedChange = onCompleteChange
             )
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "ToDO Title",
+                    text = todo.title,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -68,7 +71,7 @@ fun TodoItemCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "to-do description",
+                    text =todo.description,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -83,7 +86,7 @@ fun TodoItemCard(
                         modifier = Modifier.size(16.dp) )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                text = "Joseph Mbugua",
+                                text = todo.tasker,
                         style = MaterialTheme.typography.labelSmall
                     )
                 }
@@ -105,8 +108,28 @@ fun TodoItemCard(
 @Preview
 @Composable
 fun TodoItemCardPreview(){
-    TodoItemCard()
+    TodoItemCard(
+        todo = TodoItem(
+            id = 1, title ="smaple todo", description = "sample text",
+            imageUri = null, tasker = "joseph", isCompleted = false
+        ),
+        onCompleteChange = {
+            isChecked -> println("Checked: $isChecked")
+        }
+    )
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
