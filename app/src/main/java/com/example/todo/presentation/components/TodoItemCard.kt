@@ -110,7 +110,7 @@ fun TodoItemCard(
 fun TodoItemCardPreview(){
     TodoItemCard(
         todo = TodoItem(
-            id = 1, title ="smaple todo", description = "sample text",
+            id = 1, title ="sample todo", description = "sample text",
             imageUri = null, tasker = "joseph", isCompleted = false
         ),
         onCompleteChange = {

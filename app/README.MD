@@ -15,6 +15,42 @@ a - TodoItemCard x1      a                                b
                          b                               c 
                          c  Todoitem x2                
 
+### ROOM DATABASE 
+Steps to work with the room persistence database library 
+1. Add the library dependencies to the build.gradle
+   implementation("androidx.room:room-runtime:2.7.1")
+   implementation("androidx.room:room-ktx:2.7.1")
+2. Create Entity : select the model and annotate it with the 
+@Entity(tableName = "")
+3. Create a DATABASE ACCESS OBJECT (DAO) :: this will provide methods that
+will perform operations on a database table records 
+4. Create the databases classes : this will be used to track the different 
+database versions i.e. migrations , we cam\n also include seed data in this
+file : i.e. seed refers to mock data 
+5. Create a repository to work with viewmodel 
+     UI (composables ie. screens) -> Viewmodel -> Repository class 
+     -> Room Database (DAO)
+= The repository acts as : 
+a. A single source of truth your data 
+b. An abstraction layer between data sources 
+c. The component to handle all data operations 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
