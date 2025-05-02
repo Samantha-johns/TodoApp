@@ -2,6 +2,7 @@ package com.example.todo.presentation.screens.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todo.data.model.TodoItem
 import com.example.todo.data.repository.TodoRepository
 import kotlinx.coroutines.flow.SharingStarted
@@ -72,6 +73,19 @@ class DashboardViewModel(
             val todo = repository.getTodoById(todoId) ?: return@launch
             val updateTodo = todo.copy(isCompleted = !todo.isCompleted)
             repository.updateTodo(updateTodo)
+        }
+    }
+
+    // function to add data
+    fun addToDO (title: String, description: String, tasker:String){
+        viewModelScope.launch {
+            // we create the new Item
+            val newTodo = TodoItem(
+                id = 0, title = title,
+                description = description, imageUri = null,
+                tasker = tasker, isCompleted = false
+            )
+            repository.insertTodo(newTodo)
         }
     }
 
