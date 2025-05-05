@@ -5,9 +5,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todo.presentation.components.TodoItemCard
 import com.example.todo.presentation.components.onCompleteChange
+import com.example.todo.presentation.screens.addtodo.AddToDoForm
 
 // THIS FILE WILL CONTAIN THE COMPOSABLE ELEMENTS TO DISPLAT MY LIST OF TODos
 @Composable
@@ -45,6 +48,23 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()){
                         .toogleTodoCompletion(todo.id)}
             )
             }
+        }
+        // SHOW POP UP IF ALERT DIALOG IS TRUE
+        if(showAddDialog.value){
+            // show pop up
+            // AlertDialog is used to show pop ups
+            AlertDialog(
+                onDismissRequest = { showAddDialog.value = false},
+                title = { Text("Add Todo") },
+                text = {
+                    AddToDoForm(
+                        viewModel = viewModel,
+                        onDismiss = {showAddDialog.value = false}
+                    )
+                },
+                confirmButton = {},
+                dismissButton = {}
+            )
         }
     }
 }

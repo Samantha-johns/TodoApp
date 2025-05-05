@@ -22,13 +22,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.todo.data.repository.MockToDoRepository
 import com.example.todo.data.repository.TodoRepository
 import com.example.todo.presentation.screens.dashboard.DashboardViewModel
 // 1. add the viewmodel with the function to operate
 // 2. OnDismiss as our form will be showcased on a pop  up
 @Composable
 fun AddToDoForm(
-    viewModel: () -> Unit,
+    viewModel: DashboardViewModel,
     onDismiss: () -> Unit
 ){
     // variable to save inputs
@@ -69,7 +70,7 @@ fun AddToDoForm(
             }
             Button(onClick = {
                 if(title.isNotBlank()){
-                    //viewModel.addToDO(title,description,tasker)
+                    viewModel.addToDO(title,description,tasker)
                     onDismiss()
                 }
             }, enabled = title.isNotBlank()) {
@@ -83,8 +84,8 @@ fun AddToDoForm(
 @Preview(showBackground = true)
 @Composable
 fun AddToDoFormPreview(){
-
-    AddToDoForm(viewModel = {}, onDismiss = {})
+     val view_Model = DashboardViewModel(MockToDoRepository())
+    AddToDoForm(viewModel = view_Model, onDismiss = {})
 }
 
 

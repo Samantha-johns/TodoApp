@@ -34,8 +34,21 @@ file : i.e. seed refers to mock data
 a. A single source of truth your data 
 b. An abstraction layer between data sources 
 c. The component to handle all data operations 
-
-
+6. To provide the viewmodel on compilation we will
+add a dependency manager :: HILT 
+To add hilt to the project : 
+a. In the build.gradle project level add this hilt 
+plugin :  
+id("com.google.dagger.hilt.android") version "2.56.1" apply false
+b. In the build.gradle app level add the hilt dependency
+   plugins {
+   id("com.google.devtools.ksp")
+   id("com.google.dagger.hilt.android")
+   }
+dependencies {
+implementation("com.google.dagger:hilt-android:2.56.1")
+ksp("com.google.dagger:hilt-android-compiler:2.56.1")
+}
 
 
 

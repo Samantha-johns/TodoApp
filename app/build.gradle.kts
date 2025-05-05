@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
 }
 
 android {
@@ -50,6 +51,14 @@ dependencies {
     implementation("androidx.room:room-ktx:2.7.1")
     // navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    // hilt
+    // Hilt core
+    implementation("com.google.dagger:hilt-android:2.48")
+   // kapt("com.google.dagger:hilt-android-compiler:2.48")
+    // For viewmodel support
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    // If you use Room or other Jetpack components
+    //kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
