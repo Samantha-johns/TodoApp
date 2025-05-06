@@ -5,14 +5,16 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todo.data.model.TodoItem
 import com.example.todo.data.repository.TodoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class DashboardViewModel(
-    private val repository : TodoRepository
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
+    private val repository: TodoRepository
 ) : ViewModel() {
     // mock data // hard coded  [ {} , {}      ]
 //    private val mockToDO = listOf(

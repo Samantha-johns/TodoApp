@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todo.presentation.components.TodoItemCard
 import com.example.todo.presentation.components.onCompleteChange
@@ -23,7 +24,7 @@ import com.example.todo.presentation.screens.addtodo.AddToDoForm
 
 // THIS FILE WILL CONTAIN THE COMPOSABLE ELEMENTS TO DISPLAT MY LIST OF TODos
 @Composable
-fun DashboardScreen(viewModel: DashboardViewModel = viewModel()){
+fun DashboardScreen(viewModel: DashboardViewModel = hiltViewModel()){
     // fetch our todos from the viewmodel
     val todos by viewModel.todos.collectAsState()
     // to create a list of composables {listview}

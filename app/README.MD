@@ -41,20 +41,38 @@ a. In the build.gradle project level add this hilt
 plugin :  
 id("com.google.dagger.hilt.android") version "2.56.1" apply false
 b. In the build.gradle app level add the hilt dependency
-   plugins {
-   id("com.google.devtools.ksp")
-   id("com.google.dagger.hilt.android")
-   }
-dependencies {
-implementation("com.google.dagger:hilt-android:2.56.1")
-ksp("com.google.dagger:hilt-android-compiler:2.56.1")
-}
+   // Hilt core
+   implementation("com.google.dagger:hilt-android:2.48")
+   // For viewmodel support
+   implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
 
+## DEPENDENCY INJECTION 
+Dependency Injection (DI) is a software design pattern 
+that helps manage dependencies between different components 
+(classes, objects, etc.) in a clean and maintainable way.
+HILT : Dependency Inject manager 
+        MainActivity (launched screen)
+                     - showcase DashboardScreen 
+       DashboardScreen - list of todos i.e lazycolumn 
+                      - add to form , alertDialog
+      DashboardViewmodel - observe changes on data 
+                          CRUD  provided data via the 
+                          repository 
+     TodoRepository  -  gets data methods from Dao 
+                       and provides it to the VM 
 
-
-
-
+Steps 
+1. Create an application class : this will denote our app as a hilt
+app : allowing hilt to be used for DI  
+2. Add the created hilt class in the manifest 
+3. You need to tell HILT how to provide the repository to
+the VM , create a module class to provide the info. 
+4. Provide hilt to our VM 
+5. Provide hiltViewModel to screen. 
+6. Provide hilt to the launcher screen  i.e. MainActivity 
+7. Get build - clean project 
+8. file - invalidate caches - check all checkboxes 
 
 
 
