@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.kapt")
 
 }
 
@@ -49,12 +51,16 @@ dependencies {
     // room library : local database management
     implementation("androidx.room:room-runtime:2.7.1")
     implementation("androidx.room:room-ktx:2.7.1")
+    implementation(libs.androidx.storage)
+    kapt("androidx.room:room-compiler:2.7.1")
     // navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     // hilt
     // Hilt core
-    implementation("com.google.dagger:hilt-android:2.48")
-   // kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation("com.google.dagger:hilt-android:2.56.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.56.1")
+
+    // kapt("com.google.dagger:hilt-android-compiler:2.48")
     // For viewmodel support
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     // If you use Room or other Jetpack components
