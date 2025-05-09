@@ -9,12 +9,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
-
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
          val context = LocalContext.current
          var email by remember { mutableStateOf("") }
          var password by remember { mutableStateOf("") }
@@ -49,6 +49,7 @@ fun LoginScreen() {
                 Text("Login")
             }
             TextButton(onClick = {
+                navController.navigate("signUp")
             }) {
                 Text("Don't have an account? Sign up")
             }
@@ -60,5 +61,5 @@ fun LoginScreen() {
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(rememberNavController())
 }
