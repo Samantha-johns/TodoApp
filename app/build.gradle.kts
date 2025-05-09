@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.kapt")
-
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -65,6 +65,11 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     // If you use Room or other Jetpack components
     //kapt("androidx.hilt:hilt-compiler:1.2.0")
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    // firebase authentication
+    implementation("com.google.firebase:firebase-auth-ktx")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
