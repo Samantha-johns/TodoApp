@@ -1,5 +1,8 @@
 package com.example.todo.presentation.screens.addtodo
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.todo.data.repository.MockToDoRepository
@@ -32,7 +36,24 @@ fun AddToDoForm(
     viewModel: DashboardViewModel,
     onDismiss: () -> Unit
 ){
+
+    //other apps
+    val ImagePickerLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.GetContent()
+
+        ) {
+                uri: Uri? -> imageUri = uri
+        }
+    //define a reference for an activity launcher
+    // this allows capture of multimedia files form
+
+
     // variable to save inputs
+    val context = LocalContext.current
+    val imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
     var title by remember{ mutableStateOf("") }
     var description by remember{ mutableStateOf("") }
     var tasker by remember{ mutableStateOf("") }
@@ -62,6 +83,21 @@ fun AddToDoForm(
             label = { Text("Tasker Name")},
             modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
         )
+        //button to pick image
+        Button(onClick = {
+//            imagePickerLauncher.launch("*")
+            imagePickerLauncher.launch("image/*")
+        }) {
+            Text(text = "Select Image")
+            // image container
+            //rememberAsyncImagePainter : this is from the
+            //coil lib. allowing us to load images
+            //to image containers.it = Image uri
+            imageUri?.let{
+                Image(painter = rememberAsyncImagePainter(it),
+                    contentDescription = null)
+            }
+        }
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween) {
             Button(onClick = onDismiss,

@@ -1,18 +1,19 @@
 package com.example.todo.data.repository
 
+import android.net.Uri
 import com.example.todo.data.model.TodoItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class MockToDoRepository : TodoRepository {
     private val todos  = mutableListOf(
-        TodoItem(1,"Buy Groceries","Milk",
-            null,"Joseph", 2025,
+        TodoItem(1,1,"Buy Groceries","Milk",
+            null,"Samantha", 2025,
             false),
-        TodoItem(2,"Finish Room DB","Todo",
-            null,"Joseph", 2025,
+        TodoItem(2,2,"Finish Room DB","Todo",
+            null,"Samantha", 2025,
             false),
-        TodoItem(3,"Carry out demos","Android demos",
+        TodoItem(3,3,"Go to the gym","Android demos",
             null,"Class", 2025,
             false)
     )
@@ -35,5 +36,16 @@ class MockToDoRepository : TodoRepository {
             todos[index] = todo
         }
     }
+
+    override suspend fun uploadToFirebase(todo: TodoItem) {
+        // here stimulation of the upload process
+    }
+
+    override suspend fun uploadImagetoFirebase(imageUri: Uri?): String {
+        // here stimulation for storage process
+        return "mock.url"
+    }
+
+
 
 }

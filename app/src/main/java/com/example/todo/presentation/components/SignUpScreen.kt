@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,16 +74,18 @@ fun SignUpScreen(
                         context,navController,
                         onError = {errorMsg  -> error = errorMsg})
                 }
-            }
+            },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             ) {
-                Text("Sign Up")
+                Text("Sign Up", color = Color.White)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-//navigate to login //navigate to login
+//navigate to login
+// navigate to login
             TextButton(onClick = {  navController.navigate("login") })
             {
-                Text("Already have an account? Login")
+                Text("Already have an account? Login", color = Color.White)
             }
 
         }

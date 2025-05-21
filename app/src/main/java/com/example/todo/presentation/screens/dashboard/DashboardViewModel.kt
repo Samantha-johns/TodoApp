@@ -1,5 +1,6 @@
 package com.example.todo.presentation.screens.dashboard
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -79,8 +80,15 @@ class DashboardViewModel @Inject constructor(
     }
 
     // function to add data
-    fun addToDO (title: String, description: String, tasker:String){
+    fun addToDO (title: String, description: String, tasker:String
+    , imageUri: Uri?){
         viewModelScope.launch {
+            var imageUrl: String? = null
+            if(imageUri != null){
+                imageUrl = repository.uploadToFirebase(
+                    imageUri
+                ).toString()
+            }
             // we create the new Item
             val newTodo = TodoItem(
                 id = 0, title = title,

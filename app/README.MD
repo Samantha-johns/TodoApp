@@ -75,7 +75,9 @@ the VM , create a module class to provide the info.
 8. file - invalidate caches - check all checkboxes 
 
 
-
+### FIREBASE CLOUD
+1. Add dependencies for firebase database
+implementation("com.google.firebase:firebase)
 
 
 
